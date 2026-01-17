@@ -169,8 +169,13 @@ export default function CoffeeMap() {
                     className="grid lg:grid-cols-5 gap-8 items-start"
                 >
                     {/* Interactive Map - takes 3 columns */}
-                    <div className="lg:col-span-3 relative">
-                        <div className="relative aspect-square max-w-2xl mx-auto rounded-2xl overflow-hidden shadow-2xl">
+                    <div className="lg:col-span-3 relative px-4 sm:px-0">
+                        <div
+                            className="relative aspect-square max-w-2xl mx-auto overflow-hidden shadow-2xl transition-all duration-1000 ease-in-out"
+                            style={{
+                                clipPath: "url(#coffee-bean-clip)"
+                            }}
+                        >
                             {/* Map Image */}
                             <Image
                                 src="/images/ethiopia-map.png"
@@ -179,6 +184,26 @@ export default function CoffeeMap() {
                                 className="object-cover"
                                 priority
                             />
+
+                            {/* Coffee Bean Split Overlay */}
+                            <svg
+                                className="absolute inset-0 w-full h-full pointer-events-none z-10 opacity-30"
+                                viewBox="0 0 512 512"
+                                fill="none"
+                            >
+                                <path
+                                    d="M453.18,110.065c-43.364,5.145-146.471,27.804-237.128,127.471C124.661,342.144,50.869,365.075,32.508,369.382"
+                                    stroke="var(--color-forest)"
+                                    strokeWidth="8"
+                                    strokeLinecap="round"
+                                />
+                                <path
+                                    d="M473.689,153.187c-27.653,1.993-140.558,16.529-237.128,121.878c-92.308,100.693-165.009,129.024-192.946,136.669"
+                                    stroke="var(--color-forest)"
+                                    strokeWidth="8"
+                                    strokeLinecap="round"
+                                />
+                            </svg>
 
                             {/* Overlay for better marker visibility */}
                             <div className="absolute inset-0 bg-gradient-to-t from-forest/30 via-transparent to-transparent" />
@@ -343,6 +368,23 @@ export default function CoffeeMap() {
                     </div>
                 </div>
             </div>
+
+            {/* SVG Clip Path Definition for Coffee Bean Shape */}
+            <svg width="0" height="0" className="absolute">
+                <defs>
+                    <clipPath id="coffee-bean-clip" clipPathUnits="objectBoundingBox">
+                        {/* Outer silhouette of the coffee bean to show the full map inside */}
+                        <path
+                            transform="scale(0.001953125, 0.001953125)"
+                            d="M491.646,119.951c-0.677-1.171-1.538-2.2-2.244-3.348c-0.598-2.454-1.983-4.487-3.968-5.92
+                            c-27.978-41.05-75.195-66.953-134.765-72.953c-62.793-6.346-131.677,10.031-194.091,46.068
+                            c-62.404,36.031-111.042,87.546-136.94,145.049c-26.429,58.674-26.174,116.638,0.716,163.206
+                            c26.889,46.573,76.958,75.772,140.987,82.221c8.82,0.889,17.773,1.334,26.807,1.334c55.209,0,113.648-16.439,167.273-47.401
+                            c62.414-36.031,111.042-87.546,136.94-145.05C518.791,224.483,518.535,166.525,491.646,119.951z"
+                        />
+                    </clipPath>
+                </defs>
+            </svg>
         </section>
     );
 }
