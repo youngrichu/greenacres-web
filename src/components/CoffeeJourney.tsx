@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CoffeeBranchImage, CoffeeBeansScatteredImage, CoffeeLeafImage } from "./CoffeeDecorationsImage";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -127,8 +128,29 @@ export default function CoffeeJourney() {
             className="section-padding bg-cream relative overflow-hidden"
         >
             {/* Background decoration */}
-            <div className="absolute top-0 left-0 w-96 h-96 bg-gold/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl" />
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-forest/5 rounded-full translate-x-1/2 translate-y-1/2 blur-3xl" />
+            <div className="absolute top-0 left-0 w-96 h-96 bg-gold/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl opacity-50" />
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-forest/5 rounded-full translate-x-1/2 translate-y-1/2 blur-3xl opacity-50" />
+
+            {/* Organic Stylized Decorations */}
+            <div className="absolute top-0 left-0 w-[500px] h-[500px] pointer-events-none select-none transform -rotate-12 -translate-x-1/3 -translate-y-1/4 opacity-10">
+                <CoffeeBranchImage className="w-full h-full" />
+            </div>
+
+            <div className="absolute top-1/4 right-0 w-[300px] h-[300px] pointer-events-none select-none transform rotate-45 translate-x-1/3 opacity-10">
+                <CoffeeLeafImage className="w-full h-full" />
+            </div>
+
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] pointer-events-none select-none transform rotate-90 -translate-x-1/3 translate-y-1/3 opacity-10">
+                <CoffeeBranchImage className="w-full h-full" />
+            </div>
+
+            <div className="absolute top-2/3 left-20 w-40 h-40 pointer-events-none select-none animate-float-slow opacity-15">
+                <CoffeeBeansScatteredImage className="w-full h-full rotate-45" />
+            </div>
+
+            <div className="absolute bottom-1/3 right-10 w-48 h-48 pointer-events-none select-none animate-float-delayed opacity-10">
+                <CoffeeBeansScatteredImage className="w-full h-full -rotate-12" />
+            </div>
 
             <div className="relative z-10 max-w-6xl mx-auto">
                 {/* Section header */}

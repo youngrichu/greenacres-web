@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { CoffeeBranchImage, CoffeeBeansScatteredImage, CoffeeLeafImage } from "./CoffeeDecorationsImage";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -109,7 +110,28 @@ export default function CoffeeShowcase() {
             className="section-padding bg-cream-dark relative overflow-hidden"
         >
             {/* Background decoration */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-gold/5 to-transparent rounded-full blur-3xl" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-gold/5 to-transparent rounded-full blur-3xl opacity-60" />
+
+            {/* New Organic Decorations */}
+            <div className="absolute -top-24 -right-24 w-[500px] h-[500px] pointer-events-none select-none overflow-hidden opacity-10 rotate-180">
+                <CoffeeBranchImage className="w-full h-full" />
+            </div>
+
+            <div className="absolute top-40 -left-20 w-[400px] h-[400px] pointer-events-none select-none opacity-5 -rotate-45">
+                <CoffeeLeafImage className="w-full h-full" />
+            </div>
+
+            <div className="absolute bottom-0 right-0 w-[600px] h-[600px] pointer-events-none select-none translate-x-1/4 translate-y-1/4 opacity-10 -rotate-12">
+                <CoffeeBranchImage className="w-full h-full" />
+            </div>
+
+            <div className="absolute bottom-20 left-10 w-64 h-64 pointer-events-none select-none animate-float-slow opacity-10">
+                <CoffeeBeansScatteredImage className="w-full h-full rotate-12" />
+            </div>
+
+            <div className="absolute top-20 right-20 w-48 h-48 pointer-events-none select-none animate-float-delayed opacity-5">
+                <CoffeeLeafImage className="w-full h-full -rotate-12" />
+            </div>
 
             <div className="relative z-10 max-w-7xl mx-auto">
                 {/* Section header */}
