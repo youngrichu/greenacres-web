@@ -16,68 +16,75 @@ interface CoffeeRegion {
     process: string[];
     flavor: string[];
     description: string;
+    labelPosition?: "top" | "bottom" | "left" | "right";
 }
 
 const coffeeRegions: CoffeeRegion[] = [
     {
         id: "yirgacheffe",
         name: "Yirgacheffe",
-        position: { top: "62%", left: "55%" },
+        position: { top: "60%", left: "48%" }, // Explicitly South of Sidama
         altitude: "1,750 - 2,200m",
         process: ["Washed", "Natural"],
         flavor: ["Floral", "Citrus", "Bergamot", "Tea-like"],
         description:
             "The birthplace of coffee. Yirgacheffe produces exceptionally clean, bright coffees with distinctive floral and citrus notes that have made Ethiopian coffee world-famous.",
+        labelPosition: "right",
     },
     {
         id: "sidama",
         name: "Sidama",
-        position: { top: "58%", left: "48%" },
+        position: { top: "52%", left: "48%" }, // Central South
         altitude: "1,500 - 2,200m",
         process: ["Washed", "Natural", "Honey"],
         flavor: ["Berry", "Wine", "Chocolate", "Citrus"],
         description:
             "Known for complex, wine-like acidity and rich berry notes. Sidama coffees are prized for their balanced sweetness and velvety body.",
+        labelPosition: "right",
     },
     {
         id: "guji",
         name: "Guji",
-        position: { top: "55%", left: "62%" },
+        position: { top: "65%", left: "60%" }, // Distinctly South East
         altitude: "1,800 - 2,300m",
         process: ["Natural", "Washed"],
         flavor: ["Stone Fruit", "Jasmine", "Honey", "Complex"],
         description:
             "A newer specialty region producing intensely fruity and complex coffees with exceptional cup quality that rivals Yirgacheffe.",
+        labelPosition: "right",
     },
     {
         id: "djimmah",
         name: "Djimmah",
-        position: { top: "42%", left: "35%" },
+        position: { top: "52%", left: "28%" }, // South West (bottom of yellow zone)
         altitude: "1,400 - 2,000m",
         process: ["Natural", "Washed"],
         flavor: ["Earthy", "Spicy", "Full-bodied", "Wild"],
         description:
             "The largest coffee-producing region in Ethiopia, known for wild forest coffees with earthy, spicy character and bold flavor.",
+        labelPosition: "right",
     },
     {
         id: "limmu",
         name: "Limmu",
-        position: { top: "48%", left: "42%" },
+        position: { top: "45%", left: "32%" }, // West (top of yellow zone)
         altitude: "1,400 - 2,200m",
         process: ["Washed"],
         flavor: ["Wine", "Spice", "Floral", "Sweet"],
         description:
             "Produces refined washed coffees with wine-like acidity and floral complexity. Highly sought after by specialty roasters.",
+        labelPosition: "right",
     },
     {
         id: "lekempti",
         name: "Lekempti",
-        position: { top: "38%", left: "28%" },
+        position: { top: "30%", left: "25%" }, // North West (Cyan zone)
         altitude: "1,500 - 2,100m",
         process: ["Natural", "Washed"],
         flavor: ["Fruity", "Blueberry", "Winey", "Bold"],
         description:
             "Known for distinctive fruity naturals with intense blueberry notes and bold, winey sweetness that stands out in any blend.",
+        labelPosition: "right",
     },
 ];
 
@@ -103,8 +110,7 @@ export default function CoffeeMap() {
     const handleRegionClick = (region: CoffeeRegion, index: number) => {
         setActiveRegion(region);
         setAutoAdvance(false); // Stop auto-advance on first click
-        // Move pulse to next region
-        setPulsingIndex((index + 1) % coffeeRegions.length);
+        setPulsingIndex(-1); // Stop pulsing effect completely on interaction
     };
 
     useEffect(() => {
@@ -168,10 +174,11 @@ export default function CoffeeMap() {
                     ref={mapContainerRef}
                     className="grid lg:grid-cols-5 gap-8 items-start"
                 >
-                    {/* Interactive Map - takes 3 columns */}
-                    <div className="lg:col-span-3 relative px-4 sm:px-0">
+                    {/* Interactive Map Wrapper - takes 3 columns */}
+                    <div className="lg:col-span-3 relative px-0 sm:px-0">
+                        {/* Map Container - CLIPPED */}
                         <div
-                            className="relative aspect-square max-w-2xl mx-auto overflow-hidden shadow-2xl transition-all duration-1000 ease-in-out"
+                            className="relative aspect-square max-w-2xl mx-auto transition-all duration-1000 ease-in-out"
                             style={{
                                 clipPath: "url(#coffee-bean-clip)"
                             }}
@@ -207,24 +214,42 @@ export default function CoffeeMap() {
 
                             {/* Overlay for better marker visibility */}
                             <div className="absolute inset-0 bg-gradient-to-t from-forest/30 via-transparent to-transparent" />
+                        </div>
 
-                            {/* Region markers */}
+                        {/* Markers Layer - UNCLIPPED (sits on top of clipped map) */}
+                        <div className="absolute inset-0 aspect-square max-w-2xl mx-auto pointer-events-none">
                             {coffeeRegions.map((region, index) => {
                                 const isPulsing = index === pulsingIndex;
                                 const isActive = activeRegion?.id === region.id;
+                                const labelPos = region.labelPosition || "top";
+
+                                // Label positioning styles with more spacing
+                                const labelClasses = {
+                                    top: "left-1/2 -translate-x-1/2 -top-12 translate-y-2 group-hover:translate-y-0",
+                                    bottom: "left-1/2 -translate-x-1/2 top-10 -translate-y-2 group-hover:translate-y-0",
+                                    left: "right-10 top-1/2 -translate-y-1/2 translate-x-2 group-hover:translate-x-0",
+                                    right: "left-10 top-1/2 -translate-y-1/2 -translate-x-2 group-hover:translate-x-0"
+                                };
+
+                                const activeLabelClasses = {
+                                    top: "translate-y-0 opacity-100",
+                                    bottom: "translate-y-0 opacity-100",
+                                    left: "translate-x-0 opacity-100",
+                                    right: "translate-x-0 opacity-100"
+                                };
 
                                 return (
                                     <button
                                         key={region.id}
                                         onClick={() => handleRegionClick(region, index)}
-                                        className={`absolute transform -translate-x-1/2 -translate-y-1/2 group transition-all duration-500 ${isActive ? "z-20 scale-110" : "z-10 hover:scale-110"
+                                        className={`absolute transform -translate-x-1/2 -translate-y-1/2 group transition-all duration-500 p-4 pointer-events-auto ${isActive ? "z-30 scale-110" : "z-20 hover:scale-110"
                                             }`}
                                         style={{
                                             top: region.position.top,
                                             left: region.position.left,
                                         }}
                                     >
-                                        {/* Pulse ring - now tied to sequential pulsing */}
+                                        {/* Pulse ring */}
                                         {isPulsing && (
                                             <span className="absolute inset-0 w-full h-full rounded-full bg-gold/60 animate-ping duration-1000" />
                                         )}
@@ -241,11 +266,13 @@ export default function CoffeeMap() {
 
                                         {/* Label */}
                                         <span
-                                            className={`absolute left-1/2 -translate-x-1/2 -top-8 whitespace-nowrap px-2 py-1 rounded text-xs font-semibold transition-all duration-300 ${isActive
-                                                ? "bg-gold text-forest translate-y-0 opacity-100"
-                                                : isPulsing
-                                                    ? "bg-white/90 text-forest translate-y-0 opacity-100"
-                                                    : "bg-white/90 text-forest translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0"
+                                            className={`absolute whitespace-nowrap px-3 py-1.5 rounded-md text-xs font-semibold shadow-md transition-all duration-300 pointer-events-none 
+                                            ${labelClasses[labelPos]} 
+                                            ${isActive
+                                                    ? "bg-gold text-forest " + activeLabelClasses[labelPos]
+                                                    : isPulsing
+                                                        ? "bg-white/95 text-forest " + activeLabelClasses[labelPos]
+                                                        : "bg-white/90 text-forest opacity-0 group-hover:opacity-100"
                                                 }`}
                                         >
                                             {region.name}
@@ -254,6 +281,7 @@ export default function CoffeeMap() {
                                 )
                             })}
                         </div>
+
 
                         {/* Mobile region buttons */}
                         <div className="flex flex-wrap justify-center gap-2 mt-6 lg:hidden">
