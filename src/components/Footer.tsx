@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CoffeeBeansScatteredImage, CoffeeLeafImage, CoffeeBranchImage } from "./CoffeeDecorationsImage";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -52,6 +53,19 @@ export default function Footer() {
                             backgroundSize: "32px 32px",
                         }}
                     />
+                </div>
+
+                {/* Premium Decorations */}
+                <div className="absolute -top-20 -left-20 w-[450px] h-[450px] pointer-events-none select-none opacity-10 mix-blend-screen -rotate-45">
+                    <CoffeeBranchImage className="w-full h-full" />
+                </div>
+
+                <div className="absolute bottom-20 -right-20 w-[500px] h-[500px] pointer-events-none select-none opacity-5 mix-blend-screen rotate-12">
+                    <CoffeeBranchImage className="w-full h-full flip-x" />
+                </div>
+
+                <div className="absolute top-1/2 left-20 w-48 h-48 pointer-events-none select-none opacity-[0.03] animate-float-delayed">
+                    <CoffeeLeafImage className="w-full h-full" />
                 </div>
 
                 <div className="relative z-10 max-w-5xl mx-auto">

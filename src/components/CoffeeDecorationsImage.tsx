@@ -40,3 +40,4 @@ export const CoffeeLeafImage = ({ className, style }: DecorationProps) => (
         />
     </div>
 );
+
