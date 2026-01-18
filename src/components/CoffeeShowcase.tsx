@@ -26,7 +26,7 @@ const coffeeTypes: CoffeeType[] = [
         process: "Washed",
         notes: ["Jasmine", "Lemon", "Bergamot"],
         description: "Exceptional clarity with delicate floral aromatics and bright citrus acidity. The quintessential Ethiopian coffee.",
-        accentColor: "from-blue-400 to-cyan-300",
+        accentColor: "from-gold-light to-gold",
     },
     {
         name: "Sidama G2",
@@ -34,7 +34,7 @@ const coffeeTypes: CoffeeType[] = [
         process: "Natural",
         notes: ["Blueberry", "Wine", "Chocolate"],
         description: "Rich berry sweetness with wine-like complexity and a smooth chocolate finish that lingers.",
-        accentColor: "from-purple-400 to-pink-300",
+        accentColor: "from-gold to-forest-light",
     },
     {
         name: "Guji Natural",
@@ -42,7 +42,7 @@ const coffeeTypes: CoffeeType[] = [
         process: "Natural",
         notes: ["Peach", "Honey", "Tropical"],
         description: "Explosive tropical fruit with honey sweetness and silky body. A modern classic.",
-        accentColor: "from-orange-400 to-amber-300",
+        accentColor: "from-gold-light to-gold",
     },
     {
         name: "Djimmah Forest",
@@ -50,7 +50,7 @@ const coffeeTypes: CoffeeType[] = [
         process: "Sun-dried",
         notes: ["Earthy", "Spice", "Full-bodied"],
         description: "Wild forest character with deep earthy tones and bold spice notes. Authentic and powerful.",
-        accentColor: "from-emerald-400 to-teal-300",
+        accentColor: "from-forest-light to-forest",
     },
     {
         name: "Limmu Washed",
@@ -58,7 +58,7 @@ const coffeeTypes: CoffeeType[] = [
         process: "Washed",
         notes: ["Wine", "Floral", "Sweet"],
         description: "Refined wine-like acidity balanced with elegant floral undertones and clean finish.",
-        accentColor: "from-rose-400 to-red-300",
+        accentColor: "from-gold to-forest-light",
     },
     {
         name: "Lekempti Natural",
@@ -66,7 +66,7 @@ const coffeeTypes: CoffeeType[] = [
         process: "Natural",
         notes: ["Blueberry", "Bold", "Winey"],
         description: "Distinctive fruity bomb with intense blueberry and winey sweetness. Unforgettable.",
-        accentColor: "from-indigo-400 to-violet-300",
+        accentColor: "from-gold to-forest-light",
     },
 ];
 
@@ -159,59 +159,70 @@ export default function CoffeeShowcase() {
                     {coffeeTypes.map((coffee) => (
                         <Card
                             key={coffee.name}
-                            className="coffee-card group bg-white border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden"
+                            className="coffee-card group bg-white/40 backdrop-blur-md border border-gold/10 shadow-lg hover:shadow-2xl transition-all duration-700 hover:-translate-y-2 overflow-hidden rounded-2xl"
                         >
-                            {/* Gradient accent */}
-                            <div className={`h-1.5 w-full bg-gradient-to-r ${coffee.accentColor}`} />
+                            {/* Accent Glow on Hover */}
+                            <div className={`absolute inset-0 bg-gradient-to-br ${coffee.accentColor} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-700`} />
 
-                            <CardHeader className="pb-2">
+                            {/* Decorative Underscore */}
+                            <div className={`absolute top-0 left-0 h-1 w-0 bg-gradient-to-r ${coffee.accentColor} group-hover:w-full transition-all duration-700 ease-in-out`} />
+
+                            <CardHeader className="pb-2 relative z-10">
                                 <div className="flex justify-between items-start">
-                                    <div>
-                                        <h3 className="text-xl font-bold text-forest group-hover:text-gold transition-colors">
+                                    <div className="flex-1">
+                                        <h3
+                                            className="text-2xl font-bold text-forest group-hover:text-gold transition-colors duration-500"
+                                            style={{ fontFamily: "var(--font-playfair)" }}
+                                        >
                                             {coffee.name}
                                         </h3>
-                                        <p className="text-muted-foreground text-sm mt-1">
-                                            {coffee.process} Process
+                                        <p className="text-coffee/80 text-xs font-semibold tracking-widest uppercase mt-1">
+                                            {coffee.process}
                                         </p>
                                     </div>
-                                    <Badge variant="secondary" className="bg-forest/10 text-forest hover:bg-forest/15">
+                                    <Badge variant="secondary" className="bg-forest/5 text-forest border border-forest/10 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-tighter">
                                         {coffee.grade}
                                     </Badge>
                                 </div>
                             </CardHeader>
 
-                            <CardContent>
-                                <p className="text-muted-foreground leading-relaxed">
+                            <CardContent className="pb-6 relative z-10">
+                                <p className="text-muted-foreground leading-relaxed text-sm mb-6">
                                     {coffee.description}
                                 </p>
 
                                 {/* Flavor notes */}
-                                <div className="flex flex-wrap gap-2 mt-4">
+                                <div className="flex flex-wrap gap-2">
                                     {coffee.notes.map((note) => (
                                         <Badge
                                             key={note}
                                             variant="outline"
-                                            className="border-gold/30 text-coffee bg-gold/5"
+                                            className="border-gold/20 text-coffee bg-gold/5 text-[11px] font-medium py-0.5"
                                         >
                                             {note}
                                         </Badge>
                                     ))}
                                 </div>
+
+                                {/* Botanical card decoration */}
+                                <div className="absolute -bottom-8 -right-8 w-32 h-32 pointer-events-none select-none opacity-5 group-hover:opacity-10 group-hover:rotate-12 transition-all duration-700">
+                                    <CoffeeLeafImage className="w-full h-full" />
+                                </div>
                             </CardContent>
 
-                            <CardFooter className="pt-0 border-t border-cream-dark">
-                                <div className="flex justify-between items-center w-full pt-4">
-                                    <span className="text-sm text-muted-foreground">
-                                        Available for export
+                            <CardFooter className="pt-4 border-t border-gold/5 bg-gold/[0.02] relative z-10">
+                                <div className="flex justify-between items-center w-full">
+                                    <span className="text-[11px] font-semibold text-forest/40 uppercase tracking-widest">
+                                        Export Quality
                                     </span>
                                     <Button
                                         variant="ghost"
                                         size="sm"
-                                        className="text-gold hover:text-gold hover:bg-gold/10 gap-2 group-hover:gap-3 transition-all"
+                                        className="text-gold hover:text-gold-light hover:bg-transparent font-bold text-xs uppercase tracking-wider gap-2 group/btn"
                                     >
                                         Inquire
                                         <svg
-                                            className="w-4 h-4"
+                                            className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform"
                                             fill="none"
                                             viewBox="0 0 24 24"
                                             stroke="currentColor"
