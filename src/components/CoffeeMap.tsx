@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
+import { ArrowRight, MapPin } from "lucide-react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Badge } from "@/components/ui/badge";
 
@@ -54,15 +55,48 @@ const coffeeRegions: CoffeeRegion[] = [
         labelPosition: "right",
     },
     {
-        id: "djimmah",
-        name: "Djimmah",
-        position: { top: "52%", left: "28%" }, // South West (bottom of yellow zone)
+        id: "jimma",
+        name: "Jimma",
+        position: { top: "52%", left: "28%" }, // South West
         altitude: "1,400 - 2,000m",
         process: ["Natural", "Washed"],
         flavor: ["Earthy", "Spicy", "Full-bodied", "Wild"],
         description:
             "The largest coffee-producing region in Ethiopia, known for wild forest coffees with earthy, spicy character and bold flavor.",
         labelPosition: "right",
+    },
+    {
+        id: "kaffa",
+        name: "Kaffa",
+        position: { top: "58%", left: "24%" }, // South of Jimma
+        altitude: "1,450 - 2,100m",
+        process: ["Washed", "Natural"],
+        flavor: ["Winey", "Chocolate", "Berry", "Spice"],
+        description:
+            "The historic home of Arabica coffee. Kaffa produce complex, winey coffees with rich chocolate undertones and deep spice notes.",
+        labelPosition: "left",
+    },
+    {
+        id: "teppi",
+        name: "Teppi",
+        position: { top: "50%", left: "18%" }, // Further West
+        altitude: "1,100 - 1,900m",
+        process: ["Natural"],
+        flavor: ["Wild", "Herbal", "Citrus", "Nutty"],
+        description:
+            "A distinct low-to-mid elevation region producing coffees with wild, herbal notes and a unique low-acidity profile.",
+        labelPosition: "left",
+    },
+    {
+        id: "andrecha",
+        name: "Andrecha",
+        position: { top: "62%", left: "18%" }, // South West
+        altitude: "1,500 - 2,000m",
+        process: ["Natural"],
+        flavor: ["Sweet", "Fruity", "Full body", "Spice"],
+        description:
+            "A emerging specialty region known for sweet, full-bodied natural coffees with intense fruity characteristics.",
+        labelPosition: "left",
     },
     {
         id: "limmu",
@@ -364,28 +398,14 @@ export default function CoffeeMap() {
                                             className="inline-flex items-center gap-2 text-gold font-semibold hover:underline"
                                         >
                                             Request samples from {activeRegion.name}
-                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                            </svg>
+                                            <ArrowRight className="w-4 h-4" />
                                         </a>
                                     </div>
                                 </>
                             ) : (
                                 <div className="text-center py-12">
                                     <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-white/10 flex items-center justify-center">
-                                        <svg
-                                            className="w-10 h-10 text-gold"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth={1.5}
-                                                d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
-                                            />
-                                        </svg>
+                                        <MapPin className="w-10 h-10 text-gold" />
                                     </div>
                                     <p className="text-white/60 text-lg">
                                         Click a region on the map to explore its unique coffee characteristics

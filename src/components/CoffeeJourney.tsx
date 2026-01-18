@@ -4,6 +4,7 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CoffeeBranchImage, CoffeeBeansScatteredImage, CoffeeLeafImage } from "./CoffeeDecorationsImage";
+import { Mountain, Hand, Factory, SlidersHorizontal, Globe, ArrowRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,7 +12,7 @@ interface JourneyStep {
     number: string;
     title: string;
     description: string;
-    icon: React.ReactNode;
+    icon: React.ElementType;
 }
 
 const journeySteps: JourneyStep[] = [
@@ -20,55 +21,35 @@ const journeySteps: JourneyStep[] = [
         title: "Highland Origins",
         description:
             "Our coffee grows in the misty highlands of Ethiopia at elevations between 1,500 and 2,200 meters, where the climate and rich volcanic soil create the perfect conditions for exceptional flavor development.",
-        icon: (
-            <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-        ),
+        icon: Mountain,
     },
     {
         number: "02",
         title: "Hand-Picked Selection",
         description:
             "Every cherry is hand-picked at peak ripeness by our partner farmers. This selective harvesting ensures only the finest beans make it into our lots, preserving the nuanced flavors unique to each region.",
-        icon: (
-            <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" />
-            </svg>
-        ),
+        icon: Hand,
     },
     {
         number: "03",
         title: "Artisan Processing",
         description:
             "Whether washed for clarity or natural for fruit-forward complexity, our processing methods are refined over generations. Each bean is carefully dried and sorted to meet our exacting quality standards.",
-        icon: (
-            <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-            </svg>
-        ),
+        icon: Factory,
     },
     {
         number: "04",
         title: "Expert Cupping",
         description:
             "Our Q-graders evaluate every lot through rigorous cupping sessions, scoring for aroma, flavor, acidity, and body. Only beans that meet our specialty threshold are selected for export.",
-        icon: (
-            <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-        ),
+        icon: SlidersHorizontal,
     },
     {
         number: "05",
         title: "Global Journey",
         description:
             "From our warehouses in Addis Ababa, our green coffee travels to roasters in over 25 countries, carrying with it the authentic taste of Ethiopian coffee heritage and the stories of our farming communities.",
-        icon: (
-            <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-            </svg>
-        ),
+        icon: Globe,
     },
 ];
 
@@ -208,7 +189,7 @@ export default function CoffeeJourney() {
                                 {/* Center icon */}
                                 <div className="relative z-10 flex-shrink-0">
                                     <div className="w-16 h-16 rounded-full bg-forest text-gold flex items-center justify-center shadow-lg shadow-forest/20">
-                                        {step.icon}
+                                        <step.icon className="w-8 h-8" />
                                     </div>
                                 </div>
 
@@ -229,9 +210,7 @@ export default function CoffeeJourney() {
                         className="inline-flex items-center gap-3 px-8 py-4 bg-forest text-white font-semibold rounded-full hover:bg-forest-light transition-all hover:scale-105 shadow-lg"
                     >
                         Partner With Us
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
+                        <ArrowRight className="w-5 h-5" />
                     </a>
                 </div>
             </div>

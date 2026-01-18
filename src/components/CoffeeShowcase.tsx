@@ -7,6 +7,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CoffeeBranchImage, CoffeeBeansScatteredImage, CoffeeLeafImage } from "./CoffeeDecorationsImage";
+import { ArrowRight, FileText } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,42 +32,58 @@ const coffeeTypes: CoffeeType[] = [
     {
         name: "Sidama G2",
         grade: "Grade 2",
-        process: "Natural",
-        notes: ["Blueberry", "Wine", "Chocolate"],
+        process: "Washed / Natural",
+        notes: ["Berry", "Wine", "Chocolate"],
         description: "Rich berry sweetness with wine-like complexity and a smooth chocolate finish that lingers.",
         accentColor: "from-gold to-forest-light",
     },
     {
-        name: "Guji Natural",
+        name: "Guji G1",
         grade: "Grade 1",
         process: "Natural",
         notes: ["Peach", "Honey", "Tropical"],
-        description: "Explosive tropical fruit with honey sweetness and silky body. A modern classic.",
+        description: "Explosive tropical fruit with honey sweetness and silky body. A modern classic from the Guji highlands.",
         accentColor: "from-gold-light to-gold",
     },
     {
-        name: "Djimmah Forest",
-        grade: "Grade 3",
-        process: "Sun-dried",
+        name: "Jimma G4",
+        grade: "Grade 4",
+        process: "Natural",
         notes: ["Earthy", "Spice", "Full-bodied"],
-        description: "Wild forest character with deep earthy tones and bold spice notes. Authentic and powerful.",
+        description: "Wild forest character with deep earthy tones and bold spice notes. Authentic and powerful sun-dried beans.",
         accentColor: "from-forest-light to-forest",
     },
     {
-        name: "Limmu Washed",
+        name: "Limmu G2",
         grade: "Grade 2",
         process: "Washed",
         notes: ["Wine", "Floral", "Sweet"],
-        description: "Refined wine-like acidity balanced with elegant floral undertones and clean finish.",
+        description: "Refined wine-like acidity balanced with elegant floral undertones and clean finish from the Limmu region.",
         accentColor: "from-gold to-forest-light",
     },
     {
-        name: "Lekempti Natural",
+        name: "Kaffa G2",
         grade: "Grade 2",
+        process: "Washed",
+        notes: ["Chocolate", "Berry", "Spice"],
+        description: "From the birthplace of coffee, offering rich chocolate notes with subtle berry hints and a balanced body.",
+        accentColor: "from-forest-light to-gold",
+    },
+    {
+        name: "Teppi G5",
+        grade: "Grade 5",
         process: "Natural",
-        notes: ["Blueberry", "Bold", "Winey"],
-        description: "Distinctive fruity bomb with intense blueberry and winey sweetness. Unforgettable.",
+        notes: ["Herbal", "Citrus", "Nutty"],
+        description: "Low-elevation character with unique herbal complexity and a distinctive nutty finish.",
         accentColor: "from-gold to-forest-light",
+    },
+    {
+        name: "Andrecha G4",
+        grade: "Grade 4",
+        process: "Natural",
+        notes: ["Sweet", "Fruity", "Full Body"],
+        description: "Intensely sweet and fruity with a heavy mouthfeel, representing the emerging Andrecha specialty profile.",
+        accentColor: "from-forest-light to-forest",
     },
 ];
 
@@ -221,19 +238,7 @@ export default function CoffeeShowcase() {
                                         className="text-gold hover:text-gold-light hover:bg-transparent font-bold text-xs uppercase tracking-wider gap-2 group/btn"
                                     >
                                         Inquire
-                                        <svg
-                                            className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth={2}
-                                                d="M17 8l4 4m0 0l-4 4m4-4H3"
-                                            />
-                                        </svg>
+                                        <ArrowRight className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform" />
                                     </Button>
                                 </div>
                             </CardFooter>
@@ -250,19 +255,7 @@ export default function CoffeeShowcase() {
                     >
                         <a href="#contact" className="inline-flex items-center gap-3">
                             Request Full Catalog
-                            <svg
-                                className="w-5 h-5"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                                />
-                            </svg>
+                            <FileText className="w-5 h-5" />
                         </a>
                     </Button>
                 </div>
