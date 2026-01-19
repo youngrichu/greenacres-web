@@ -18,6 +18,9 @@ interface CoffeeType {
     notes: string[];
     description: string;
     accentColor: string;
+    backgroundImage: string;
+    gradientTheme: string;
+    glowColor: string;
 }
 
 const coffeeTypes: CoffeeType[] = [
@@ -28,6 +31,9 @@ const coffeeTypes: CoffeeType[] = [
         notes: ["Jasmine", "Lemon", "Bergamot"],
         description: "Exceptional clarity with delicate floral aromatics and bright citrus acidity. The quintessential Ethiopian coffee.",
         accentColor: "from-gold-light to-gold",
+        backgroundImage: "/images/flavors/yirgacheffe.png",
+        gradientTheme: "from-amber-100/80 via-yellow-50/60 to-green-100/40",
+        glowColor: "rgba(250, 204, 21, 0.4)",
     },
     {
         name: "Sidama G2",
@@ -36,6 +42,9 @@ const coffeeTypes: CoffeeType[] = [
         notes: ["Berry", "Wine", "Chocolate"],
         description: "Rich berry sweetness with wine-like complexity and a smooth chocolate finish that lingers.",
         accentColor: "from-gold to-forest-light",
+        backgroundImage: "/images/flavors/sidama.png",
+        gradientTheme: "from-purple-200/80 via-rose-100/60 to-amber-100/40",
+        glowColor: "rgba(139, 92, 246, 0.4)",
     },
     {
         name: "Guji G1",
@@ -44,6 +53,9 @@ const coffeeTypes: CoffeeType[] = [
         notes: ["Peach", "Honey", "Tropical"],
         description: "Explosive tropical fruit with honey sweetness and silky body. A modern classic from the Guji highlands.",
         accentColor: "from-gold-light to-gold",
+        backgroundImage: "/images/flavors/guji.png",
+        gradientTheme: "from-orange-100/80 via-amber-50/60 to-pink-100/40",
+        glowColor: "rgba(251, 146, 60, 0.4)",
     },
     {
         name: "Jimma G4",
@@ -52,6 +64,9 @@ const coffeeTypes: CoffeeType[] = [
         notes: ["Earthy", "Spice", "Full-bodied"],
         description: "Wild forest character with deep earthy tones and bold spice notes. Authentic and powerful sun-dried beans.",
         accentColor: "from-forest-light to-forest",
+        backgroundImage: "/images/flavors/jimma.png",
+        gradientTheme: "from-amber-200/80 via-orange-100/60 to-green-200/40",
+        glowColor: "rgba(180, 83, 9, 0.4)",
     },
     {
         name: "Limmu G2",
@@ -60,6 +75,9 @@ const coffeeTypes: CoffeeType[] = [
         notes: ["Wine", "Floral", "Sweet"],
         description: "Refined wine-like acidity balanced with elegant floral undertones and clean finish from the Limmu region.",
         accentColor: "from-gold to-forest-light",
+        backgroundImage: "/images/flavors/limmu.png",
+        gradientTheme: "from-rose-200/80 via-pink-50/60 to-amber-50/40",
+        glowColor: "rgba(244, 114, 182, 0.4)",
     },
     {
         name: "Kaffa G2",
@@ -68,6 +86,9 @@ const coffeeTypes: CoffeeType[] = [
         notes: ["Chocolate", "Berry", "Spice"],
         description: "From the birthplace of coffee, offering rich chocolate notes with subtle berry hints and a balanced body.",
         accentColor: "from-forest-light to-gold",
+        backgroundImage: "/images/flavors/kaffa.png",
+        gradientTheme: "from-amber-200/80 via-rose-100/60 to-purple-100/40",
+        glowColor: "rgba(120, 53, 15, 0.4)",
     },
     {
         name: "Teppi G5",
@@ -76,6 +97,9 @@ const coffeeTypes: CoffeeType[] = [
         notes: ["Herbal", "Citrus", "Nutty"],
         description: "Low-elevation character with unique herbal complexity and a distinctive nutty finish.",
         accentColor: "from-gold to-forest-light",
+        backgroundImage: "/images/flavors/teppi.png",
+        gradientTheme: "from-green-100/80 via-amber-50/60 to-yellow-100/40",
+        glowColor: "rgba(132, 204, 22, 0.4)",
     },
     {
         name: "Andrecha G4",
@@ -84,6 +108,9 @@ const coffeeTypes: CoffeeType[] = [
         notes: ["Sweet", "Fruity", "Full Body"],
         description: "Intensely sweet and fruity with a heavy mouthfeel, representing the emerging Andrecha specialty profile.",
         accentColor: "from-forest-light to-forest",
+        backgroundImage: "/images/flavors/andrecha.png",
+        gradientTheme: "from-orange-200/80 via-pink-100/60 to-purple-100/40",
+        glowColor: "rgba(249, 115, 22, 0.4)",
     },
 ];
 
@@ -176,19 +203,44 @@ export default function CoffeeShowcase() {
                     {coffeeTypes.map((coffee) => (
                         <Card
                             key={coffee.name}
-                            className="coffee-card group bg-white/40 backdrop-blur-md border border-gold/10 shadow-lg hover:shadow-2xl transition-all duration-700 hover:-translate-y-2 overflow-hidden rounded-2xl"
+                            className="coffee-card group relative bg-white/60 backdrop-blur-md border border-white/20 shadow-lg hover:shadow-2xl transition-all duration-700 hover:-translate-y-2 overflow-hidden rounded-2xl"
+                            style={{
+                                boxShadow: `0 4px 24px -4px rgba(0, 0, 0, 0.1)`,
+                            }}
                         >
-                            {/* Accent Glow on Hover */}
-                            <div className={`absolute inset-0 bg-gradient-to-br ${coffee.accentColor} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-700`} />
+                            {/* ═══ FLAVOR BACKGROUND LAYER ═══ */}
+                            <div
+                                className="absolute inset-0 opacity-30 group-hover:opacity-50 transition-opacity duration-700"
+                                style={{
+                                    backgroundImage: `url(${coffee.backgroundImage})`,
+                                    backgroundSize: 'cover',
+                                    backgroundPosition: 'center',
+                                    mixBlendMode: 'soft-light',
+                                }}
+                            />
+
+                            {/* ═══ GRADIENT OVERLAY ═══ */}
+                            <div className={`absolute inset-0 bg-gradient-to-br ${coffee.gradientTheme} opacity-40 group-hover:opacity-60 transition-opacity duration-700`} />
+
+                            {/* ═══ GLASS FROST LAYER ═══ */}
+                            <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]" />
+
+                            {/* ═══ ANIMATED GLOW ON HOVER ═══ */}
+                            <div
+                                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                                style={{
+                                    boxShadow: `inset 0 0 60px ${coffee.glowColor}`,
+                                }}
+                            />
 
                             {/* Decorative Underscore */}
-                            <div className={`absolute top-0 left-0 h-1 w-0 bg-gradient-to-r ${coffee.accentColor} group-hover:w-full transition-all duration-700 ease-in-out`} />
+                            <div className={`absolute top-0 left-0 h-1.5 w-0 bg-gradient-to-r ${coffee.accentColor} group-hover:w-full transition-all duration-700 ease-in-out z-20`} />
 
                             <CardHeader className="pb-2 relative z-10">
                                 <div className="flex justify-between items-start">
                                     <div className="flex-1">
                                         <h3
-                                            className="text-2xl font-bold text-forest group-hover:text-gold transition-colors duration-500"
+                                            className="text-2xl font-bold text-forest group-hover:text-forest-dark transition-colors duration-500 drop-shadow-sm"
                                             style={{ fontFamily: "var(--font-playfair)" }}
                                         >
                                             {coffee.name}
@@ -197,14 +249,14 @@ export default function CoffeeShowcase() {
                                             {coffee.process}
                                         </p>
                                     </div>
-                                    <Badge variant="secondary" className="bg-forest/5 text-forest border border-forest/10 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-tighter">
+                                    <Badge variant="secondary" className="bg-forest/10 text-forest border border-forest/20 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-tighter backdrop-blur-sm">
                                         {coffee.grade}
                                     </Badge>
                                 </div>
                             </CardHeader>
 
                             <CardContent className="pb-6 relative z-10">
-                                <p className="text-muted-foreground leading-relaxed text-sm mb-6">
+                                <p className="text-forest/70 leading-relaxed text-sm mb-6">
                                     {coffee.description}
                                 </p>
 
@@ -214,28 +266,33 @@ export default function CoffeeShowcase() {
                                         <Badge
                                             key={note}
                                             variant="outline"
-                                            className="border-gold/20 text-coffee bg-gold/5 text-[11px] font-medium py-0.5"
+                                            className="border-forest/20 text-forest bg-white/60 backdrop-blur-sm text-[11px] font-medium py-0.5 shadow-sm"
                                         >
                                             {note}
                                         </Badge>
                                     ))}
                                 </div>
 
-                                {/* Botanical card decoration */}
-                                <div className="absolute -bottom-8 -right-8 w-32 h-32 pointer-events-none select-none opacity-5 group-hover:opacity-10 group-hover:rotate-12 transition-all duration-700">
-                                    <CoffeeLeafImage className="w-full h-full" />
-                                </div>
+                                {/* Flavor image peek in corner */}
+                                <div
+                                    className="absolute -bottom-4 -right-4 w-24 h-24 pointer-events-none select-none opacity-20 group-hover:opacity-40 group-hover:scale-110 transition-all duration-700 rounded-full overflow-hidden"
+                                    style={{
+                                        backgroundImage: `url(${coffee.backgroundImage})`,
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'center',
+                                    }}
+                                />
                             </CardContent>
 
-                            <CardFooter className="pt-4 border-t border-gold/5 bg-gold/[0.02] relative z-10">
+                            <CardFooter className="pt-4 border-t border-forest/5 bg-white/30 backdrop-blur-sm relative z-10">
                                 <div className="flex justify-between items-center w-full">
-                                    <span className="text-[11px] font-semibold text-forest/40 uppercase tracking-widest">
+                                    <span className="text-[11px] font-semibold text-forest/50 uppercase tracking-widest">
                                         Export Quality
                                     </span>
                                     <Button
                                         variant="ghost"
                                         size="sm"
-                                        className="text-gold hover:text-gold-light hover:bg-transparent font-bold text-xs uppercase tracking-wider gap-2 group/btn"
+                                        className="text-forest hover:text-gold hover:bg-transparent font-bold text-xs uppercase tracking-wider gap-2 group/btn"
                                     >
                                         Inquire
                                         <ArrowRight className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform" />
