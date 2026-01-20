@@ -299,6 +299,42 @@ h6 {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   TOUCH DEVICE UTILITIES
+   Detect devices without hover capability (mobile/tablet)
+   ═══════════════════════════════════════════════════════════ */
+
+@media (hover: none) {
+
+  /* Force visibility for hover-revealed content on touch devices */
+  .touch-visible {
+    opacity: 1 !important;
+  }
+
+  /* Enhanced visibility for flavor cards on mobile */
+  .touch-flavor-bg {
+    opacity: 0.45 !important;
+  }
+
+  .touch-flavor-gradient {
+    opacity: 0.55 !important;
+  }
+
+  .touch-flavor-glow {
+    opacity: 0.3 !important;
+  }
+
+  /* Expanded state by default on touch */
+  .touch-expanded {
+    width: 100% !important;
+  }
+
+  /* Scale effects visible by default */
+  .touch-scale {
+    transform: scale(1.05) !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
    SCROLLBAR STYLING
    ═══════════════════════════════════════════════════════════ */
 

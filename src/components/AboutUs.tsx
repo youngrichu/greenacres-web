@@ -261,7 +261,7 @@ export default function AboutUs() {
                             <p className="text-gold text-xs font-semibold tracking-widest uppercase mb-4">
                                 {member.role}
                             </p>
-                            <p className="text-foreground-muted text-xs leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <p className="text-foreground-muted text-xs leading-relaxed opacity-0 group-hover:opacity-100 touch-visible transition-opacity duration-500">
                                 {member.bio}
                             </p>
                         </div>

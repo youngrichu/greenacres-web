@@ -210,7 +210,7 @@ export default function CoffeeShowcase() {
                         >
                             {/* ═══ FLAVOR BACKGROUND LAYER ═══ */}
                             <div
-                                className="absolute inset-0 opacity-30 group-hover:opacity-50 transition-opacity duration-700"
+                                className="absolute inset-0 opacity-30 group-hover:opacity-50 touch-flavor-bg transition-opacity duration-700"
                                 style={{
                                     backgroundImage: `url(${coffee.backgroundImage})`,
                                     backgroundSize: 'cover',
@@ -220,21 +220,21 @@ export default function CoffeeShowcase() {
                             />
 
                             {/* ═══ GRADIENT OVERLAY ═══ */}
-                            <div className={`absolute inset-0 bg-gradient-to-br ${coffee.gradientTheme} opacity-40 group-hover:opacity-60 transition-opacity duration-700`} />
+                            <div className={`absolute inset-0 bg-gradient-to-br ${coffee.gradientTheme} opacity-40 group-hover:opacity-60 touch-flavor-gradient transition-opacity duration-700`} />
 
                             {/* ═══ GLASS FROST LAYER ═══ */}
                             <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]" />
 
                             {/* ═══ ANIMATED GLOW ON HOVER ═══ */}
                             <div
-                                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                                className="absolute inset-0 opacity-0 group-hover:opacity-100 touch-flavor-glow transition-opacity duration-700 pointer-events-none"
                                 style={{
                                     boxShadow: `inset 0 0 60px ${coffee.glowColor}`,
                                 }}
                             />
 
                             {/* Decorative Underscore */}
-                            <div className={`absolute top-0 left-0 h-1.5 w-0 bg-gradient-to-r ${coffee.accentColor} group-hover:w-full transition-all duration-700 ease-in-out z-20`} />
+                            <div className={`absolute top-0 left-0 h-1.5 w-0 bg-gradient-to-r ${coffee.accentColor} group-hover:w-full touch-expanded transition-all duration-700 ease-in-out z-20`} />
 
                             <CardHeader className="pb-2 relative z-10">
                                 <div className="flex justify-between items-start">

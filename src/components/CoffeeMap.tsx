@@ -276,7 +276,7 @@ export default function CoffeeMap() {
                                     <button
                                         key={region.id}
                                         onClick={() => handleRegionClick(region, index)}
-                                        className={`absolute transform -translate-x-1/2 -translate-y-1/2 group transition-all duration-500 p-4 pointer-events-auto ${isActive ? "z-30 scale-110" : "z-20 hover:scale-110"
+                                        className={`absolute transform -translate-x-1/2 -translate-y-1/2 group transition-all duration-500 p-4 pointer-events-auto ${isActive ? "z-30 scale-110" : "z-20 hover:scale-110 touch-scale"
                                             }`}
                                         style={{
                                             top: region.position.top,
