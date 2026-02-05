@@ -1,0 +1,39 @@
+
+> @greenacres/web@0.1.0 build /Users/richu/programming/coffee/apps/web
+> next build
+
+▲ Next.js 16.1.3 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+Turbopack build encountered 6 warnings:
+[next]/internal/font/google/1bffadaabf893a1e-s.woff2
+Error while requesting resource
+There was an issue requesting https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2
+
+
+[next]/internal/font/google/2bbe8d2671613f1f-s.woff2
+Error while requesting resource
+There was an issue requesting https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7W0Q5n-wU.woff2
+
+
+[next]/internal/font/google/5476f68d60460930-s.woff2
+Error while requesting resource
+There was an issue requesting https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7W0Q5n-wU.woff2
+
+
+[next]/internal/font/google/83afe278b6a6bb3c-s.p.woff2
+Error while requesting resource
+There was an issue requesting https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2
+
+
+[next]/internal/font/google/9c72aa0f40e4eef8-s.woff2
+Error while requesting resource
+There was an issue requesting https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2
+
+
+[next]/internal/font/google/ad66f9afd8947f86-s.woff2
+Error while requesting resource
+There was an issue requesting https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7W0Q5n-wU.woff2
+
+

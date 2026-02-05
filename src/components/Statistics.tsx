@@ -75,10 +75,10 @@ export default function Statistics() {
     const sectionRef = useRef<HTMLElement>(null);
 
     const stats = [
-        { value: 2010, suffix: "", label: "Founded" },
-        { value: 15000, suffix: "+", label: "Partner Farmers" },
+        { value: 4, suffix: "", label: "Coffee Regions" },
+        { value: 7, suffix: "", label: "Processing Stations" },
         { value: 25, suffix: "+", label: "Export Destinations" },
-        { value: 8500, suffix: "t", label: "Tons Exported Yearly" },
+        { value: 10560, suffix: "+", label: "Tons Exported Yearly" },
     ];
 
     return (

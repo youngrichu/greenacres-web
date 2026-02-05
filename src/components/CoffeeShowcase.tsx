@@ -1,13 +1,15 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CoffeeBranchImage, CoffeeBeansScatteredImage, CoffeeLeafImage } from "./CoffeeDecorationsImage";
-import { ArrowRight, FileText } from "lucide-react";
+import { ArrowRight, FileText, Lock } from "lucide-react";
+import { useAuth } from "@greenacres/auth";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,100 +27,115 @@ interface CoffeeType {
 
 const coffeeTypes: CoffeeType[] = [
     {
-        name: "Yirgacheffe G1",
+        name: "Sidamo Nensebo Refisa",
         grade: "Grade 1",
         process: "Washed",
-        notes: ["Jasmine", "Lemon", "Bergamot"],
-        description: "Exceptional clarity with delicate floral aromatics and bright citrus acidity. The quintessential Ethiopian coffee.",
-        accentColor: "from-gold-light to-gold",
-        backgroundImage: "/images/flavors/yirgacheffe.png",
-        gradientTheme: "from-amber-100/80 via-yellow-50/60 to-green-100/40",
-        glowColor: "rgba(250, 204, 21, 0.4)",
-    },
-    {
-        name: "Sidama G2",
-        grade: "Grade 2",
-        process: "Washed / Natural",
-        notes: ["Berry", "Wine", "Chocolate"],
-        description: "Rich berry sweetness with wine-like complexity and a smooth chocolate finish that lingers.",
+        notes: ["Floral", "Citrus", "Honey"],
+        description: "Exquisite washed coffee from the Nensebo woreda in West Arsi, known for its high altitude and complex floral notes.",
         accentColor: "from-gold to-forest-light",
         backgroundImage: "/images/flavors/sidama.png",
         gradientTheme: "from-purple-200/80 via-rose-100/60 to-amber-100/40",
         glowColor: "rgba(139, 92, 246, 0.4)",
     },
     {
-        name: "Guji G1",
+        name: "Guji Guduba Wet Mill",
         grade: "Grade 1",
-        process: "Natural",
-        notes: ["Peach", "Honey", "Tropical"],
-        description: "Explosive tropical fruit with honey sweetness and silky body. A modern classic from the Guji highlands.",
+        process: "Washed",
+        notes: ["Jasmine", "Lemon", "Bergamot"],
+        description: "Located in the heart of Hambella, Guduba station produces classic Guji profiles with intense aromatics.",
         accentColor: "from-gold-light to-gold",
         backgroundImage: "/images/flavors/guji.png",
         gradientTheme: "from-orange-100/80 via-amber-50/60 to-pink-100/40",
         glowColor: "rgba(251, 146, 60, 0.4)",
     },
     {
-        name: "Jimma G4",
-        grade: "Grade 4",
-        process: "Natural",
-        notes: ["Earthy", "Spice", "Full-bodied"],
-        description: "Wild forest character with deep earthy tones and bold spice notes. Authentic and powerful sun-dried beans.",
-        accentColor: "from-forest-light to-forest",
-        backgroundImage: "/images/flavors/jimma.png",
-        gradientTheme: "from-amber-200/80 via-orange-100/60 to-green-200/40",
-        glowColor: "rgba(180, 83, 9, 0.4)",
-    },
-    {
-        name: "Limmu G2",
-        grade: "Grade 2",
+        name: "Guji Gotae Sodu",
+        grade: "Grade 1",
         process: "Washed",
-        notes: ["Wine", "Floral", "Sweet"],
-        description: "Refined wine-like acidity balanced with elegant floral undertones and clean finish from the Limmu region.",
-        accentColor: "from-gold to-forest-light",
-        backgroundImage: "/images/flavors/limmu.png",
-        gradientTheme: "from-rose-200/80 via-pink-50/60 to-amber-50/40",
-        glowColor: "rgba(244, 114, 182, 0.4)",
+        notes: ["Peach", "Black Tea", "Floral"],
+        description: "A standout micro-lot from the Gotae Sodu kebele, offering exceptional clarity and sweetness.",
+        accentColor: "from-gold-light to-gold",
+        backgroundImage: "/images/flavors/guji.png",
+        gradientTheme: "from-amber-100/80 via-yellow-50/60 to-green-100/40",
+        glowColor: "rgba(250, 204, 21, 0.4)",
     },
     {
-        name: "Kaffa G2",
-        grade: "Grade 2",
+        name: "Guji Haro Sorsa (Sisay Station)",
+        grade: "Grade 1",
         process: "Washed",
-        notes: ["Chocolate", "Berry", "Spice"],
-        description: "From the birthplace of coffee, offering rich chocolate notes with subtle berry hints and a balanced body.",
-        accentColor: "from-forest-light to-gold",
-        backgroundImage: "/images/flavors/kaffa.png",
-        gradientTheme: "from-amber-200/80 via-rose-100/60 to-purple-100/40",
-        glowColor: "rgba(120, 53, 15, 0.4)",
-    },
-    {
-        name: "Teppi G5",
-        grade: "Grade 5",
-        process: "Natural",
-        notes: ["Herbal", "Citrus", "Nutty"],
-        description: "Low-elevation character with unique herbal complexity and a distinctive nutty finish.",
+        notes: ["Apricot", "Jasmine", "Sugar Cane"],
+        description: "From the renowned deep red soils of Haro Sorsa, processed at the Sisay washing station.",
         accentColor: "from-gold to-forest-light",
-        backgroundImage: "/images/flavors/teppi.png",
+        backgroundImage: "/images/flavors/guji.png",
         gradientTheme: "from-green-100/80 via-amber-50/60 to-yellow-100/40",
         glowColor: "rgba(132, 204, 22, 0.4)",
     },
     {
-        name: "Andrecha G4",
-        grade: "Grade 4",
+        name: "Yirgacheffe Banko Gotiti",
+        grade: "Grade 1",
         process: "Natural",
-        notes: ["Sweet", "Fruity", "Full Body"],
-        description: "Intensely sweet and fruity with a heavy mouthfeel, representing the emerging Andrecha specialty profile.",
+        notes: ["Blueberry", "Strawberry", "Milk Chocolate"],
+        description: "Classic Gedeb natural with intense berry notes and a creamy body.",
+        accentColor: "from-gold-light to-gold",
+        backgroundImage: "/images/flavors/yirgacheffe.png",
+        gradientTheme: "from-rose-200/80 via-pink-50/60 to-amber-50/40",
+        glowColor: "rgba(244, 114, 182, 0.4)",
+    },
+    {
+        name: "Yirgacheffe Wurae (Halo Berti)",
+        grade: "Grade 1",
+        process: "Natural",
+        notes: ["Tropical Fruit", "Winey", "Dried Fig"],
+        description: "Complex and winey natural processed coffee from the Halo Berti kebele.",
+        accentColor: "from-forest-light to-gold",
+        backgroundImage: "/images/flavors/yirgacheffe.png",
+        gradientTheme: "from-amber-200/80 via-rose-100/60 to-purple-100/40",
+        glowColor: "rgba(120, 53, 15, 0.4)",
+    },
+    {
+        name: "Jimma Agaro Genji Challa",
+        grade: "Grade 1",
+        process: "Natural",
+        notes: ["Stone Fruit", "Spices", "Honey"],
+        description: "Known for its clean cup and distinct spicy notes, Agaro coffees are gaining rapid recognition.",
         accentColor: "from-forest-light to-forest",
-        backgroundImage: "/images/flavors/andrecha.png",
-        gradientTheme: "from-orange-200/80 via-pink-100/60 to-purple-100/40",
-        glowColor: "rgba(249, 115, 22, 0.4)",
+        backgroundImage: "/images/flavors/jimma.png",
+        gradientTheme: "from-amber-200/80 via-orange-100/60 to-green-200/40",
+        glowColor: "rgba(180, 83, 9, 0.4)",
     },
 ];
 
 export default function CoffeeShowcase() {
     const sectionRef = useRef<HTMLElement>(null);
     const cardsRef = useRef<HTMLDivElement>(null);
+    const { user, loading } = useAuth();
+    const [coffeeIds, setCoffeeIds] = useState<Record<string, string>>({});
 
     useEffect(() => {
+        const fetchCoffees = async () => {
+            try {
+                // Dynamically import getCoffees to avoid server-side issues if any
+                const { getCoffees } = await import("@greenacres/db");
+                const coffees = await getCoffees();
+                console.log("☕️ Debug Showcase: Fetched coffees:", coffees.length, coffees.map(c => c.name));
+
+                const idMap: Record<string, string> = {};
+
+                coffees.forEach(coffee => {
+                    // Create a normalized map key
+                    idMap[coffee.name] = coffee.id;
+                });
+
+                console.log("☕️ Debug Showcase: Generated ID Map:", idMap);
+
+                setCoffeeIds(idMap);
+            } catch (error) {
+                console.error("Failed to fetch coffees for showcase links:", error);
+            }
+        };
+
+        fetchCoffees();
+
         const ctx = gsap.context(() => {
             if (cardsRef.current) {
                 const cards = cardsRef.current.querySelectorAll(".coffee-card");
@@ -289,14 +306,46 @@ export default function CoffeeShowcase() {
                                     <span className="text-[11px] font-semibold text-forest/50 uppercase tracking-widest">
                                         Export Quality
                                     </span>
-                                    <Button
-                                        variant="ghost"
-                                        size="sm"
-                                        className="text-forest hover:text-gold hover:bg-transparent font-bold text-xs uppercase tracking-wider gap-2 group/btn"
-                                    >
-                                        Inquire
-                                        <ArrowRight className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform" />
-                                    </Button>
+                                    {loading ? (
+                                        <Button variant="ghost" size="sm" disabled className="text-forest/50">
+                                            Loading...
+                                        </Button>
+                                    ) : user ? (
+                                        <Link href={coffeeIds[coffee.name] ? `/portal/catalog/${coffeeIds[coffee.name]}` : "/portal/catalog"}>
+                                            <Button
+                                                variant="ghost"
+                                                size="sm"
+                                                className="text-forest hover:text-gold hover:bg-transparent font-bold text-xs uppercase tracking-wider gap-2 group/btn"
+                                            >
+                                                View In Portal
+                                                <ArrowRight className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform" />
+                                            </Button>
+                                        </Link>
+                                    ) : (
+                                        coffeeIds[coffee.name] ? (
+                                            <Link href={`/catalog/${coffeeIds[coffee.name]}`}>
+                                                <Button
+                                                    variant="ghost"
+                                                    size="sm"
+                                                    className="text-forest hover:text-gold hover:bg-transparent font-bold text-xs uppercase tracking-wider gap-2 group/btn"
+                                                >
+                                                    View Details
+                                                    <ArrowRight className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform" />
+                                                </Button>
+                                            </Link>
+                                        ) : (
+                                            <Button
+                                                variant="ghost"
+                                                size="sm"
+                                                disabled
+                                                className="text-forest/40 cursor-not-allowed font-bold text-xs uppercase tracking-wider gap-2"
+                                                title="Product not yet available in catalog"
+                                            >
+                                                Coming Soon
+                                                <Lock className="w-3 h-3" />
+                                            </Button>
+                                        )
+                                    )}
                                 </div>
                             </CardFooter>
                         </Card>
@@ -305,16 +354,31 @@ export default function CoffeeShowcase() {
 
                 {/* View more CTA */}
                 <div className="text-center mt-16">
-                    <Button
-                        size="lg"
-                        className="h-14 px-10 bg-forest hover:bg-forest-light text-white font-semibold rounded-full shadow-lg shadow-forest/20 transition-all hover:scale-105"
-                        asChild
-                    >
-                        <a href="#contact" className="inline-flex items-center gap-3">
-                            Request Full Catalog
-                            <FileText className="w-5 h-5" />
-                        </a>
-                    </Button>
+                    {loading ? (
+                        <div className="h-14 w-48 mx-auto bg-forest/10 rounded-full animate-pulse" />
+                    ) : user ? (
+                        <Button
+                            size="lg"
+                            className="h-14 px-10 bg-forest hover:bg-forest-light text-white font-semibold rounded-full shadow-lg shadow-forest/20 transition-all hover:scale-105"
+                            asChild
+                        >
+                            <Link href="/portal/catalog" className="inline-flex items-center gap-3">
+                                Go To Buyer Portal
+                                <ArrowRight className="w-5 h-5" />
+                            </Link>
+                        </Button>
+                    ) : (
+                        <Button
+                            size="lg"
+                            className="h-14 px-10 bg-forest hover:bg-forest-light text-white font-semibold rounded-full shadow-lg shadow-forest/20 transition-all hover:scale-105"
+                            asChild
+                        >
+                            <Link href="/register" className="inline-flex items-center gap-3">
+                                Become a Partner
+                                <FileText className="w-5 h-5" />
+                            </Link>
+                        </Button>
+                    )}
                 </div>
             </div>
         </section>

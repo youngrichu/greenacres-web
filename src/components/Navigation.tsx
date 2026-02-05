@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useAuth } from "@greenacres/auth";
+import { User, LogOut, LayoutDashboard } from "lucide-react";
 
 const navLinks = [
     { href: "#home", label: "Home" },
@@ -8,13 +11,15 @@ const navLinks = [
     { href: "#regions", label: "Regions" },
     { href: "#coffee", label: "Our Coffee" },
     { href: "#heritage", label: "Heritage" },
-    { href: "#how-to-order", label: "How to Order" },
+    { href: "/how-to-order", label: "How to Order", isPage: true },
     { href: "#contact", label: "Contact" },
 ];
 
 export default function Navigation() {
+    const { user, loading, signOut } = useAuth();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -24,6 +29,11 @@ export default function Navigation() {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    const handleSignOut = async () => {
+        await signOut();
+        setIsUserMenuOpen(false);
+    };
 
     return (
         <nav
@@ -52,22 +62,91 @@ export default function Navigation() {
                 </a>
 
                 {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center gap-8">
+                <div className="hidden md:flex items-center gap-6">
                     {navLinks.map((link) => (
-                        <a
-                            key={link.href}
-                            href={link.href}
-                            className="text-white/80 hover:text-gold transition-colors text-sm font-medium tracking-wide uppercase"
-                        >
-                            {link.label}
-                        </a>
+                        link.isPage ? (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className="text-white/80 hover:text-gold transition-colors text-sm font-medium tracking-wide uppercase"
+                            >
+                                {link.label}
+                            </Link>
+                        ) : (
+                            <a
+                                key={link.href}
+                                href={link.href}
+                                className="text-white/80 hover:text-gold transition-colors text-sm font-medium tracking-wide uppercase"
+                            >
+                                {link.label}
+                            </a>
+                        )
                     ))}
-                    <a
-                        href="#contact"
-                        className="ml-4 px-6 py-2.5 bg-gold text-forest font-semibold text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 shadow-lg"
-                    >
-                        Get a Quote
-                    </a>
+
+                    {/* Auth buttons */}
+                    {!loading && (
+                        user ? (
+                            <div className="relative ml-4">
+                                <button
+                                    onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                                    className="flex items-center gap-2 px-4 py-2 bg-gold/10 border border-gold/30 text-gold rounded-full hover:bg-gold/20 transition-all"
+                                >
+                                    <User className="w-4 h-4" />
+                                    <span className="text-sm font-medium max-w-[100px] truncate">
+                                        {user.companyName || user.email}
+                                    </span>
+                                </button>
+
+                                {/* Dropdown */}
+                                {isUserMenuOpen && (
+                                    <div className="absolute right-0 top-full mt-2 w-48 bg-forest-dark border border-gold/20 rounded-xl shadow-xl overflow-hidden">
+                                        {user.status === 'approved' && (
+                                            <Link
+                                                href="/portal"
+                                                onClick={() => setIsUserMenuOpen(false)}
+                                                className="flex items-center gap-3 px-4 py-3 text-white/80 hover:text-gold hover:bg-white/5 transition-colors"
+                                            >
+                                                <LayoutDashboard className="w-4 h-4" />
+                                                Buyer Portal
+                                            </Link>
+                                        )}
+                                        {user.role === 'admin' && (
+                                            <Link
+                                                href="/admin/dashboard"
+                                                onClick={() => setIsUserMenuOpen(false)}
+                                                className="flex items-center gap-3 px-4 py-3 text-white/80 hover:text-gold hover:bg-white/5 transition-colors"
+                                            >
+                                                <LayoutDashboard className="w-4 h-4" />
+                                                Admin Dashboard
+                                            </Link>
+                                        )}
+                                        <button
+                                            onClick={handleSignOut}
+                                            className="w-full flex items-center gap-3 px-4 py-3 text-white/80 hover:text-red-400 hover:bg-white/5 transition-colors"
+                                        >
+                                            <LogOut className="w-4 h-4" />
+                                            Sign Out
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <div className="flex items-center gap-3 ml-4">
+                                <Link
+                                    href="/login"
+                                    className="px-4 py-2 text-white/80 hover:text-gold transition-colors text-sm font-medium"
+                                >
+                                    Sign In
+                                </Link>
+                                <Link
+                                    href="/register"
+                                    className="px-5 py-2.5 bg-gold text-forest font-semibold text-sm rounded-full hover:bg-gold-light transition-all hover:scale-105 shadow-lg"
+                                >
+                                    Register
+                                </Link>
+                            </div>
+                        )
+                    )}
                 </div>
 
                 {/* Mobile Menu Button */}
@@ -95,27 +174,79 @@ export default function Navigation() {
 
             {/* Mobile Menu */}
             <div
-                className={`md:hidden absolute top-full left-0 right-0 bg-forest/98 backdrop-blur-md transition-all overflow-hidden ${isMobileMenuOpen ? "max-h-96 py-6" : "max-h-0"
+                className={`md:hidden absolute top-full left-0 right-0 bg-forest/98 backdrop-blur-md transition-all overflow-hidden ${isMobileMenuOpen ? "max-h-[500px] py-6" : "max-h-0"
                     }`}
             >
                 <div className="flex flex-col items-center gap-4 px-6">
                     {navLinks.map((link) => (
-                        <a
-                            key={link.href}
-                            href={link.href}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className="text-white/90 hover:text-gold transition-colors text-base font-medium"
-                        >
-                            {link.label}
-                        </a>
+                        link.isPage ? (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="text-white/90 hover:text-gold transition-colors text-base font-medium"
+                            >
+                                {link.label}
+                            </Link>
+                        ) : (
+                            <a
+                                key={link.href}
+                                href={link.href}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="text-white/90 hover:text-gold transition-colors text-base font-medium"
+                            >
+                                {link.label}
+                            </a>
+                        )
                     ))}
-                    <a
-                        href="#contact"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="mt-4 px-8 py-3 bg-gold text-forest font-semibold rounded-full"
-                    >
-                        Get a Quote
-                    </a>
+
+                    {/* Mobile Auth */}
+                    <div className="w-full border-t border-white/10 pt-4 mt-2">
+                        {!loading && (
+                            user ? (
+                                <div className="flex flex-col items-center gap-3">
+                                    <span className="text-gold text-sm font-medium">
+                                        {user.companyName || user.email}
+                                    </span>
+                                    {user.status === 'approved' && (
+                                        <Link
+                                            href="/portal"
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                            className="px-6 py-3 bg-gold text-forest font-semibold rounded-full"
+                                        >
+                                            Buyer Portal
+                                        </Link>
+                                    )}
+                                    <button
+                                        onClick={() => {
+                                            handleSignOut();
+                                            setIsMobileMenuOpen(false);
+                                        }}
+                                        className="text-white/60 hover:text-red-400 text-sm"
+                                    >
+                                        Sign Out
+                                    </button>
+                                </div>
+                            ) : (
+                                <div className="flex flex-col items-center gap-3">
+                                    <Link
+                                        href="/login"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className="text-white/90 hover:text-gold transition-colors text-base font-medium"
+                                    >
+                                        Sign In
+                                    </Link>
+                                    <Link
+                                        href="/register"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className="px-8 py-3 bg-gold text-forest font-semibold rounded-full"
+                                    >
+                                        Register
+                                    </Link>
+                                </div>
+                            )
+                        )}
+                    </div>
                 </div>
             </div>
         </nav>

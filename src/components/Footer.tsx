@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CoffeeBeansScatteredImage, CoffeeLeafImage, CoffeeBranchImage } from "./CoffeeDecorationsImage";
+import { Linkedin, Facebook, Instagram, Music2 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -107,7 +108,7 @@ export default function Footer() {
                                     type="email"
                                     required
                                     className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-gold transition-colors"
-                                    placeholder="you@company.com"
+                                    placeholder="ethiocof@greenacrescoffee.com"
                                 />
                             </div>
                         </div>
@@ -231,6 +232,9 @@ export default function Footer() {
                         <div>
                             <span className="text-white font-semibold">Green Acres Industrial PLC</span>
                             <span className="block text-white/50 text-xs">
+                                ethiocof@greenacrescoffee.com
+                            </span>
+                            <span className="block text-white/50 text-xs">
                                 Addis Ababa, Ethiopia
                             </span>
                         </div>
@@ -253,8 +257,21 @@ export default function Footer() {
                     </div>
 
                     {/* Social / Certifications */}
-                    <div className="flex items-center gap-4">
-                        <span className="text-white/40 text-xs">Certified by:</span>
+                    <div className="flex flex-col items-center md:items-end gap-4">
+                        <div className="flex gap-4">
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-gold transition-colors">
+                                <Linkedin className="w-5 h-5" />
+                            </a>
+                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-gold transition-colors">
+                                <Facebook className="w-5 h-5" />
+                            </a>
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-gold transition-colors">
+                                <Instagram className="w-5 h-5" />
+                            </a>
+                            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-gold transition-colors">
+                                <Music2 className="w-5 h-5" />
+                            </a>
+                        </div>
                         <div className="flex gap-2">
                             {["ECX", "FT", "RA"].map((cert) => (
                                 <span
