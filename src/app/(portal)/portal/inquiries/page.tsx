@@ -219,7 +219,7 @@ export default function InquiriesPage() {
                                             <div>
                                                 <p className="text-cream font-medium">{item.coffeeName}</p>
                                                 <p className="text-cream/40 text-sm">
-                                                    {item.location && `📍 ${item.location}`}
+                                                    {item.preferredLocation && `📍 ${item.preferredLocation}`}
                                                 </p>
                                             </div>
                                             <div className="text-right">
@@ -231,11 +231,11 @@ export default function InquiriesPage() {
                             </div>
 
                             {/* Notes */}
-                            {selectedInquiry.notes && (
+                            {selectedInquiry.message && (
                                 <div>
                                     <h3 className="text-cream font-medium mb-3">Additional Notes</h3>
                                     <div className="glass rounded-lg p-4">
-                                        <p className="text-cream/80 text-sm">{selectedInquiry.notes}</p>
+                                        <p className="text-cream/80 text-sm">{selectedInquiry.message}</p>
                                     </div>
                                 </div>
                             )}

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useAuth } from "@greenacres/auth";
 import { User, LogOut, LayoutDashboard } from "lucide-react";
 
@@ -17,6 +18,7 @@ const navLinks = [
 
 export default function Navigation() {
     const { user, loading, signOut } = useAuth();
+    const pathname = usePathname();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
@@ -44,8 +46,8 @@ export default function Navigation() {
         >
             <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
                 {/* Logo */}
-                <a
-                    href="#home"
+                <Link
+                    href="/"
                     className="flex items-center gap-3 group"
                 >
                     <div className="w-10 h-10 rounded-full bg-gold flex items-center justify-center transition-transform group-hover:scale-110">
@@ -59,29 +61,25 @@ export default function Navigation() {
                             Premium Coffee
                         </span>
                     </div>
-                </a>
+                </Link>
 
                 {/* Desktop Navigation */}
                 <div className="hidden md:flex items-center gap-6">
-                    {navLinks.map((link) => (
-                        link.isPage ? (
+                    {navLinks.map((link) => {
+                        const href = (link.href.startsWith('#') && pathname !== '/')
+                            ? `/${link.href}`
+                            : link.href;
+
+                        return (
                             <Link
-                                key={link.href}
-                                href={link.href}
+                                key={link.label}
+                                href={href}
                                 className="text-white/80 hover:text-gold transition-colors text-sm font-medium tracking-wide uppercase"
                             >
                                 {link.label}
                             </Link>
-                        ) : (
-                            <a
-                                key={link.href}
-                                href={link.href}
-                                className="text-white/80 hover:text-gold transition-colors text-sm font-medium tracking-wide uppercase"
-                            >
-                                {link.label}
-                            </a>
-                        )
-                    ))}
+                        );
+                    })}
 
                     {/* Auth buttons */}
                     {!loading && (
@@ -178,27 +176,22 @@ export default function Navigation() {
                     }`}
             >
                 <div className="flex flex-col items-center gap-4 px-6">
-                    {navLinks.map((link) => (
-                        link.isPage ? (
+                    {navLinks.map((link) => {
+                        const href = (link.href.startsWith('#') && pathname !== '/')
+                            ? `/${link.href}`
+                            : link.href;
+
+                        return (
                             <Link
-                                key={link.href}
-                                href={link.href}
+                                key={link.label}
+                                href={href}
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 className="text-white/90 hover:text-gold transition-colors text-base font-medium"
                             >
                                 {link.label}
                             </Link>
-                        ) : (
-                            <a
-                                key={link.href}
-                                href={link.href}
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="text-white/90 hover:text-gold transition-colors text-base font-medium"
-                            >
-                                {link.label}
-                            </a>
-                        )
-                    ))}
+                        );
+                    })}
 
                     {/* Mobile Auth */}
                     <div className="w-full border-t border-white/10 pt-4 mt-2">

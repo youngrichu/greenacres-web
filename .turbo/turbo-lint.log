@@ -1,0 +1,145 @@
+
+
+> @greenacres/web@0.1.0 lint /Users/richu/programming/coffee/apps/web
+> eslint .
+
+[0m[0m
+[0m[4m/Users/richu/programming/coffee/apps/web/src/app/(marketing)/catalog/[id]/page.tsx[24m[0m
+[0m  [2m11:10[22m  [33mwarning[39m  'ArrowLeft' is defined but never used  [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m[0m
+[0m[4m/Users/richu/programming/coffee/apps/web/src/app/(marketing)/how-to-order/page.tsx[24m[0m
+[0m  [2m129:99[22m  [31merror[39m  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  [2mreact/no-unescaped-entities[22m[0m
+[0m[0m
+[0m[4m/Users/richu/programming/coffee/apps/web/src/app/(portal)/layout.tsx[24m[0m
+[0m   [2m61:11[22m  [33mwarning[39m  'isApproved' is assigned a value but never used                  [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m  [2m106:28[22m  [31merror[39m    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  [2mreact/no-unescaped-entities[22m[0m
+[0m[0m
+[0m[4m/Users/richu/programming/coffee/apps/web/src/app/(portal)/portal/catalog/[id]/page.tsx[24m[0m
+[0m   [2m10:5[22m   [33mwarning[39m  'Badge' is defined but never used                        [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m11:5[22m   [33mwarning[39m  'Input' is defined but never used                        [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m12:5[22m   [33mwarning[39m  'Label' is defined but never used                        [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m13:5[22m   [33mwarning[39m  'Textarea' is defined but never used                     [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m14:5[22m   [33mwarning[39m  'Select' is defined but never used                       [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m15:5[22m   [33mwarning[39m  'SelectContent' is defined but never used                [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m16:5[22m   [33mwarning[39m  'SelectItem' is defined but never used                   [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m17:5[22m   [33mwarning[39m  'SelectTrigger' is defined but never used                [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m18:5[22m   [33mwarning[39m  'SelectValue' is defined but never used                  [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m19:5[22m   [33mwarning[39m  'Card' is defined but never used                         [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m20:5[22m   [33mwarning[39m  'CardContent' is defined but never used                  [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m21:5[22m   [33mwarning[39m  'CardHeader' is defined but never used                   [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m22:5[22m   [33mwarning[39m  'CardTitle' is defined but never used                    [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m26:5[22m   [33mwarning[39m  'MapPin' is defined but never used                       [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m27:5[22m   [33mwarning[39m  'Star' is defined but never used                         [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m28:5[22m   [33mwarning[39m  'Package' is defined but never used                      [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m29:5[22m   [33mwarning[39m  'Calendar' is defined but never used                     [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m30:5[22m   [33mwarning[39m  'Award' is defined but never used                        [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m32:5[22m   [33mwarning[39m  'Send' is defined but never used                         [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m34:5[22m   [33mwarning[39m  'CheckCircle' is defined but never used                  [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m35:5[22m   [33mwarning[39m  'Sparkles' is defined but never used                     [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m36:5[22m   [33mwarning[39m  'ShoppingBag' is defined but never used                  [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m37:5[22m   [33mwarning[39m  'Plus' is defined but never used                         [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m39:30[22m  [33mwarning[39m  'Location' is defined but never used                     [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m40:25[22m  [33mwarning[39m  'createInquiry' is defined but never used                [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m41:10[22m  [33mwarning[39m  'LocationLabels' is defined but never used               [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m44:7[22m   [33mwarning[39m  'availabilityColors' is assigned a value but never used  [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m50:7[22m   [33mwarning[39m  'availabilityLabels' is assigned a value but never used  [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m60:11[22m  [33mwarning[39m  'router' is assigned a value but never used              [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m  [2m105:66[22m  [31merror[39m    Unexpected any. Specify a different type                 [2m@typescript-eslint/no-explicit-any[22m[0m
+[0m[0m
+[0m[4m/Users/richu/programming/coffee/apps/web/src/app/(portal)/portal/catalog/page.tsx[24m[0m
+[0m   [2m20:5[22m   [33mwarning[39m  'X' is defined but never used                     [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m31:5[22m   [33mwarning[39m  'Location' is defined but never used              [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m37:5[22m   [33mwarning[39m  'LocationLabels' is defined but never used        [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m38:5[22m   [33mwarning[39m  'FlavorCategories' is defined but never used      [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m56:11[22m  [33mwarning[39m  'lowestPrice' is assigned a value but never used  [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m  [2m209:58[22m  [31merror[39m    Unexpected any. Specify a different type          [2m@typescript-eslint/no-explicit-any[22m[0m
+[0m  [2m337:87[22m  [31merror[39m    Unexpected any. Specify a different type          [2m@typescript-eslint/no-explicit-any[22m[0m
+[0m  [2m355:85[22m  [31merror[39m    Unexpected any. Specify a different type          [2m@typescript-eslint/no-explicit-any[22m[0m
+[0m  [2m358:89[22m  [31merror[39m    Unexpected any. Specify a different type          [2m@typescript-eslint/no-explicit-any[22m[0m
+[0m[0m
+[0m[4m/Users/richu/programming/coffee/apps/web/src/app/(portal)/portal/inquiries/page.tsx[24m[0m
+[0m    [2m7:10[22m  [33mwarning[39m  'Card' is defined but never used                                                                                                                                      [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m    [2m7:16[22m  [33mwarning[39m  'CardContent' is defined but never used                                                                                                                               [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m    [2m7:29[22m  [33mwarning[39m  'CardHeader' is defined but never used                                                                                                                                [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m    [2m7:41[22m  [33mwarning[39m  'CardTitle' is defined but never used                                                                                                                                 [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m  [2m183:38[22m  [31merror[39m    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                       [2mreact/no-unescaped-entities[22m[0m
+[0m  [2m186:29[22m  [31merror[39m    Do not use an `<a>` element to navigate to `/portal/catalog/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  [2m@next/next/no-html-link-for-pages[22m[0m
+[0m[0m
+[0m[4m/Users/richu/programming/coffee/apps/web/src/app/(portal)/portal/page.tsx[24m[0m
+[0m  [2m31:12[22m  [33mwarning[39m  'recentInquiries' is assigned a value but never used  [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m[0m
+[0m[4m/Users/richu/programming/coffee/apps/web/src/app/forgot-password/page.tsx[24m[0m
+[0m   [2m20:10[22m  [33mwarning[39m  'CoffeeLeafImage' is defined but never used                      [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m  [2m105:37[22m  [31merror[39m    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  [2mreact/no-unescaped-entities[22m[0m
+[0m[0m
+[0m[4m/Users/richu/programming/coffee/apps/web/src/app/login/page.tsx[24m[0m
+[0m   [2m11:29[22m  [33mwarning[39m  'CoffeeBeansScatteredImage' is defined but never used            [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m  [2m164:32[22m  [31merror[39m    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  [2mreact/no-unescaped-entities[22m[0m
+[0m[0m
+[0m[4m/Users/richu/programming/coffee/apps/web/src/app/register/page.tsx[24m[0m
+[0m   [2m27:27[22m  [33mwarning[39m  'CoffeeBeansScatteredImage' is defined but never used            [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m  [2m178:40[22m  [31merror[39m    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  [2mreact/no-unescaped-entities[22m[0m
+[0m[0m
+[0m[4m/Users/richu/programming/coffee/apps/web/src/components/AboutUs.tsx[24m[0m
+[0m  [2m252:40[22m  [33mwarning[39m  'i' is defined but never used  [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m[0m
+[0m[4m/Users/richu/programming/coffee/apps/web/src/components/CoffeeDetailView.tsx[24m[0m
+[0m   [2m12:5[22m   [33mwarning[39m  'Select' is defined but never used                               [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m13:5[22m   [33mwarning[39m  'SelectContent' is defined but never used                        [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m14:5[22m   [33mwarning[39m  'SelectItem' is defined but never used                           [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m15:5[22m   [33mwarning[39m  'SelectTrigger' is defined but never used                        [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m16:5[22m   [33mwarning[39m  'SelectValue' is defined but never used                          [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m17:5[22m   [33mwarning[39m  'Card' is defined but never used                                 [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m18:5[22m   [33mwarning[39m  'CardContent' is defined but never used                          [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m19:5[22m   [33mwarning[39m  'CardHeader' is defined but never used                           [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m20:5[22m   [33mwarning[39m  'CardTitle' is defined but never used                            [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m26:5[22m   [33mwarning[39m  'Package' is defined but never used                              [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m27:5[22m   [33mwarning[39m  'Award' is defined but never used                                [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m28:5[22m   [33mwarning[39m  'Coffee' is defined but never used                               [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m59:50[22m  [31merror[39m    Unexpected any. Specify a different type                         [2m@typescript-eslint/no-explicit-any[22m[0m
+[0m   [2m64:12[22m  [31merror[39m    Unexpected any. Specify a different type                         [2m@typescript-eslint/no-explicit-any[22m[0m
+[0m   [2m76:5[22m   [33mwarning[39m  'user' is defined but never used                                 [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m  [2m352:73[22m  [31merror[39m    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  [2mreact/no-unescaped-entities[22m[0m
+[0m[0m
+[0m[4m/Users/richu/programming/coffee/apps/web/src/components/CoffeeMap.tsx[24m[0m
+[0m  [2m144:54[22m  [33mwarning[39m  'index' is defined but never used  [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m[0m
+[0m[4m/Users/richu/programming/coffee/apps/web/src/components/EthiopiaCulture.tsx[24m[0m
+[0m  [2m8:18[22m  [33mwarning[39m  'MapPin' is defined but never used  [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m  [2m8:26[22m  [33mwarning[39m  'Search' is defined but never used  [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m[0m
+[0m[4m/Users/richu/programming/coffee/apps/web/src/components/Footer.tsx[24m[0m
+[0m  [2m6:10[22m  [33mwarning[39m  'CoffeeBeansScatteredImage' is defined but never used  [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m[0m
+[0m[4m/Users/richu/programming/coffee/apps/web/src/components/cart-sheet.tsx[24m[0m
+[0m    [2m4:8[22m   [33mwarning[39m  'Link' is defined but never used                                 [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m24:5[22m   [33mwarning[39m  'Plus' is defined but never used                                 [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m25:5[22m   [33mwarning[39m  'Minus' is defined but never used                                [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m  [2m105:35[22m  [31merror[39m    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  [2mreact/no-unescaped-entities[22m[0m
+[0m[0m
+[0m[4m/Users/richu/programming/coffee/apps/web/src/contexts/cart-context.tsx[24m[0m
+[0m  [2m28:17[22m  [31merror[39m  Error: Calling setState synchronously within an effect can trigger cascading renders[0m
+[0m[0m
+[0mEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:[0m
+[0m* Update external systems with the latest state from React.[0m
+[0m* Subscribe for updates from some external system, calling setState in a callback function when external state changes.[0m
+[0m[0m
+[0mCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).[0m
+[0m[0m
+[0m/Users/richu/programming/coffee/apps/web/src/contexts/cart-context.tsx:28:17[0m
+[0m  26 |         if (savedCart) {[0m
+[0m  27 |             try {[0m
+[0m> 28 |                 setItems(JSON.parse(savedCart));[0m
+[0m     |                 ^^^^^^^^ Avoid calling setState() directly within an effect[0m
+[0m  29 |             } catch (e) {[0m
+[0m  30 |                 console.error('Failed to parse cart', e);[0m
+[0m  31 |             }  [2mreact-hooks/set-state-in-effect[22m[0m
+[0m[0m
+[0m[4m/Users/richu/programming/coffee/apps/web/src/lib/mailtrap.ts[24m[0m
+[0m  [2m5:5[22m  [31merror[39m    'apiParams' is never reassigned. Use 'const' instead  [2mprefer-const[22m[0m
+[0m  [2m5:5[22m  [33mwarning[39m  'apiParams' is assigned a value but never used        [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m[0m
+[0m[31m[1m✖ 84 problems (18 errors, 66 warnings)[22m[39m[0m
+[0m[31m[1m[22m[39m[31m[1m  1 error and 0 warnings potentially fixable with the `--fix` option.[22m[39m[0m
+[0m[31m[1m[22m[39m[0m
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed with exit code 1.[39m
